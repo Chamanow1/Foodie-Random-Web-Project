@@ -1,5 +1,7 @@
 import streamlit as st
 
+st.set_page_config(page_title="CheckWatthudip", page_icon=":pizza:")
+
 Food = {
     "Pad Thai": {"Flat rice noodles", "Eggs", "Garlic", "Shallots", 
                  "Dried shrimp", "Bean sprouts", "Chinese chives", "Lime"},

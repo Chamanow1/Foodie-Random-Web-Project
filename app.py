@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 
+st.set_page_config(page_title="CheckWatthudip", page_icon=":pizza:")
+
 Food = [
     {"Name":"แกงฮังเล",
      "Ingredients":{"เนื้อหมู":"เนื้อหมู 1000 กรัม", "พริกแกงฮังเล":"พริกแกงฮังเล 3-5 ช้อนโต๊ะ (ถ้าไม่มี พอใช้น้ำพริกแกงเผ็ด แทนได้)",

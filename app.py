@@ -19,8 +19,8 @@ df = pd.DataFrame(Food)
 
 All_Ingredients = set().union(*df["Ingredients"].map(dict.keys))
 
-st.title("เช็ควัตถุดิบ")
-st.header("What do you have in your fridge?")
+st.title("CheckWatthudip")
+st.header("มีอะไรในตู้เย็นบ้าง?")
 selected = st.multiselect("", All_Ingredients)
 
 filtered = df[df["Ingredients"].apply(lambda x: bool(set(selected) & set(x.keys())))] # x เป็น Ingredients ของแต่งละเมนู

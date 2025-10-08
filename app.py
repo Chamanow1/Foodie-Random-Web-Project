@@ -3,7 +3,7 @@ import pandas as pd
 
 st.set_page_config(page_title="CheckWatthudip", page_icon=":pizza:")
 
-df = pd.read_csv("food.csv")
+df = pd.read_csv("FileFood.csv")
 def change_ingredients(s): 
     '''Ingredients string to dict'''
     items = s.split(",") 
@@ -33,10 +33,10 @@ def RecipeStep(PickedMenu):
     menu = df[df["Name"] == PickedMenu].iloc[0]
     st.header(menu["Name"])
     st.subheader("Ingredients")
-    for ingredient in menu["Ingredients"].values():
-        st.write(f"- {ingredient}")
+    for ingredient, qty in menu["Ingredients_dict"].items():
+        st.write(f"- {ingredient}:{qty}")
     st.subheader("Recipe Steps")
-    for i, step in enumerate(menu["Recipe"], 1):
+    for i, step in enumerate(menu["Recipe_list"], 1):
         st.write(f"{i}. {step}")
     #ไม่รู้ทำไมไม่ขึ้น
 
@@ -48,7 +48,7 @@ def RandomOne():
     random_food = filtered.sample(1).iloc[0]
     with st.container(border=True):
         st.write(random_food["Name"])
-        st.markdown("  \n".join(random_food["Ingredients"].values()))
+        st.markdown("  \n".join([f"{k}:{v}"for k,v in random_food["Ingredients_dict"].items()]))
         if st.button("Let's Cook!"):
             RecipeStep(random_food["Name"])
 

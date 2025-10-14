@@ -1,12 +1,22 @@
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(page_title="CheckWatthudip", page_icon=":pizza:")
+st.set_page_config(
+    page_title="AhanFromFridge",
+    page_icon="❄️",
+    layout="centered",
+    initial_sidebar_state="auto",
+)
+
+def load_css(style_file):
+    with open(style_file) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+load_css("style.css")
 
 df = pd.read_json("food.json")
 All_Ingredients = set().union(*df["Ingredients"].map(dict.keys))
 
-st.title("CheckWatthudip")
+st.title("AhanFromFridge")
 st.header("มีอะไรในตู้เย็นบ้าง?")
 selected = st.multiselect("", All_Ingredients)
 

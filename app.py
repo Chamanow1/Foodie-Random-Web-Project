@@ -3,30 +3,14 @@ import pandas as pd
 
 st.set_page_config(page_title="CheckWatthudip", page_icon=":pizza:")
 
-df = pd.read_csv("food.csv")
-def change_ingredients(s): 
-    '''Ingredients string to dict'''
-    items = s.split(",") 
-    Ingre_dict = {}
-    for i in items:
-        parts = i.split(":",1)
-        key = parts[0].strip()
-        value = parts[1].strip()
-        Ingre_dict[key] = value
-    return Ingre_dict
-df["Ingredients_dict"] = df["Ingredients"].apply(change_ingredients) # make new column and Ingredients string to dict
-df["Recipe_list"] = df["Recipe"].apply(lambda s: [step.strip() for step in s.split("|")]) # make new column and Recipe string to list
-
-#all ingredients
-All_Ingredients = set()
-for d in df["Ingredients_dict"]:
-    All_Ingredients.update(d.keys())
+df = pd.read_json("food.json")
+All_Ingredients = set().union(*df["Ingredients"].map(dict.keys))
 
 st.title("CheckWatthudip")
 st.header("มีอะไรในตู้เย็นบ้าง?")
 selected = st.multiselect("", All_Ingredients)
 
-filtered = df[df["Ingredients_dict"].apply(lambda x: bool(set(selected) & set(x.keys())))] # x เป็น Ingredients ของแต่งละเมนู
+filtered = df[df["Ingredients"].apply(lambda x: bool(set(selected) & set(x.keys())))] # x เป็น Ingredients ของแต่งละเมนู
 
 def RecipeStep(PickedMenu):
     """This funtion run after click Let's Cook! button"""

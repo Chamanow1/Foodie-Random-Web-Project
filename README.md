@@ -1,5 +1,5 @@
-# ***CheckWatthudip***
-โครงการ CheckWatthudip เป็นโครงการของวิชา Problem Solving and Computer Programming (PSCP) คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง
+# ***AhanFromFridge***
+โครงการ AhanFromFridge เป็นโครงการของวิชา Problem Solving and Computer Programming (PSCP) คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง
 ## *Contributors*
 * นางสาวณฐมน อำไพสุทธิพงษ์   68070037
 * นางสาวกัญญาญัฐ รักสมัย      68070216

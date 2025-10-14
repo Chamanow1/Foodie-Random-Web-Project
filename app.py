@@ -3,30 +3,27 @@ import pandas as pd
 
 st.set_page_config(page_title="CheckWatthudip", page_icon=":pizza:")
 
-df = pd.read_csv("food.csv")
-def change_ingredients(s): 
-    '''Ingredients string to dict'''
-    items = s.split(",") 
-    Ingre_dict = {}
-    for i in items:
-        parts = i.split(":",1)
-        key = parts[0].strip()
-        value = parts[1].strip()
-        Ingre_dict[key] = value
-    return Ingre_dict
-df["Ingredients_dict"] = df["Ingredients"].apply(change_ingredients) # make new column and Ingredients string to dict
-df["Recipe_list"] = df["Recipe"].apply(lambda s: [step.strip() for step in s.split("|")]) # make new column and Recipe string to list
+Food = [
+    {"Name":"แกงฮังเล",
+     "Ingredients":{"เนื้อหมู":"เนื้อหมู 1000 กรัม", "พริกแกงฮังเล":"พริกแกงฮังเล 3-5 ช้อนโต๊ะ (ถ้าไม่มี พอใช้น้ำพริกแกงเผ็ด แทนได้)",
+                    "ผงฮังเล":"ผงฮังเล 1-2 ช้อนโต๊ะ (ถ้าไม่มี พอใช้ผงกะหรี่แทนได้)", "ซิอิ๊วดำ":"ซิอิ๊วดำ 1 ช้อนโต๊ะ",
+                    "น้ำตาลปี๊บ":"น้ำตาลปี๊บ 2 ช้อนโต๊ะ", "น้ำปลา":"น้ำปลา 2 ช้อนโต๊ะ", "น้ำมะขามเปียก":"น้ำมะขามเปียก 2-4 ช้อนโต๊ะ",
+                    "ขิงซอย":"ขิงซอย 1/2 ถ้วย", "กระเทียมโทนดอง":"กระเทียมโทนดอง 2 ช้อนโต๊ะ", "ถั่วลิสงคั่ว":"ถั่วลิสงคั่ว 2 ช้อนโต๊ะ"},
+     "Recipe":["หมักหมู โดยนำหมูที่หั่นเตรียมไว้ ผสมกับพริกแกงฮังเล และซิอิ๊วดำ คลุกเข้ากันให้ทั่ว หมักทิ้งไว้ 1 ชั่วโมง",
+               "ตั้งน้ำมันในกระทะบนไฟร้อนปานกลาง ใส่เนื้อหมูที่หมักไว้ลงไปผัด พอให้ผิวด้านนอกสุก จากนั้นจึงใส่น้ำเปล่าลงไปพอท่วม คนให้ส่วนผสมเข้ากัน และเคี่ยวด้วยไฟอ่อนทิ้งไว้อย่างน้อย 1 ชั่วโมง หมั่นคนเรื่อยๆระหว่างเคี่ยว ถ้าน้ำแห้งสามารถเติมน้ำเพิ่มได้",
+               "เมื่อเเคี่ยวจนครบหนึ่งชั่วโมง หรือเนื้อหมูนุ่มดีแล้ว ปรุงรสด้วยน้ำตาลมะพร้าว, น้ำมะขามเปียก และน้ำปลา จากนั้นจึงใส่ขิงซอย, กระเทียมโทน และถั่วลิสงคั่ว",
+               "คนให้ส่วนผสมเข้ากัน และเคี่ยวต่อไปอีกสักพัก จึงปิดไฟ ตักใส่ถ้วยและเสิร์ฟ"]},  
+]
 
-#all ingredients
-All_Ingredients = set()
-for d in df["Ingredients_dict"]:
-    All_Ingredients.update(d.keys())
+df = pd.DataFrame(Food)
+
+All_Ingredients = set().union(*df["Ingredients"].map(dict.keys))
 
 st.title("CheckWatthudip")
 st.header("มีอะไรในตู้เย็นบ้าง?")
 selected = st.multiselect("", All_Ingredients)
 
-filtered = df[df["Ingredients_dict"].apply(lambda x: bool(set(selected) & set(x.keys())))] # x เป็น Ingredients ของแต่งละเมนู
+filtered = df[df["Ingredients"].apply(lambda x: bool(set(selected) & set(x.keys())))] # x เป็น Ingredients ของแต่งละเมนู
 
 def RecipeStep(PickedMenu):
     """This funtion run after click Let's Cook! button"""

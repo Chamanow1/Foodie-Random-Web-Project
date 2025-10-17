@@ -16,11 +16,54 @@ load_css("style.css")
 df = pd.read_json("food.json")
 All_Ingredients = set().union(*df["Ingredients"].map(dict.keys))
 
-st.title("AhanFromFridge")
-st.header("มีอะไรในตู้เย็นบ้าง?")
-selected = st.multiselect("", All_Ingredients)
+if "page" not in st.session_state:
+    st.session_state.page = "home"
+if "PickedMenu" not in st.session_state:
+    st.session_state.PickedMenu = None
+if "ChosenFood" not in st.session_state:
+    st.session_state.ChosenFood = None
+if "CookButtonClicked" not in st.session_state:
+    st.session_state.CookButtonClicked = False
 
-filtered = df[df["Ingredients"].apply(lambda x: bool(set(selected) & set(x.keys())))] # x เป็น Ingredients ของแต่งละเมนู
+
+def HomePage():
+    """This function run at home page"""
+    st.title("AhanFromFridge:fried_egg:")
+    st.header("มีอะไรในตู้เย็นบ้าง?")
+    selected = st.multiselect("", All_Ingredients)
+
+    filtered = df[df["Ingredients"].apply(lambda x: bool(set(selected) & set(x.keys())))]  # x เป็น Ingredients ของแต่ละเมนู
+
+    def RandomOne():
+        """This funtion run after click Random One button"""
+        if filtered.empty:
+            st.warning("อย่าลืมใส่วัตถุดิบ")
+            return
+        st.session_state.ChosenFood = filtered.sample(1).iloc[0]
+        st.session_state.CookButtonClicked = False
+
+    def ShowAll():
+        """This funtion run after click Show All button"""
+        #ยังไม่ได้ทำ
+
+    if st.button("Random One"):
+        RandomOne()
+
+    if st.session_state.ChosenFood is not None:
+        ChosenFood = st.session_state.ChosenFood
+        with st.container(border=True):
+            st.subheader(ChosenFood["Name"])
+            st.markdown(", ".join(ChosenFood["Ingredients"]))
+            if st.button("Let's Cook!"):
+                st.session_state.PickedMenu = ChosenFood["Name"]
+                st.session_state.CookButtonClicked = True
+
+    if st.button("Show All"):
+        ShowAll()
+
+    if st.session_state.CookButtonClicked:
+        st.session_state.page = "recipe"
+        st.rerun()
 
 def RecipeStep(PickedMenu):
     """This funtion run after click Let's Cook! button"""
@@ -32,25 +75,11 @@ def RecipeStep(PickedMenu):
     st.subheader("Recipe Steps")
     for i, step in enumerate(menu["Recipe"], 1):
         st.write(f"{i}. {step}")
-    #ไม่รู้ทำไมไม่ขึ้น
+    if st.button("Back"):
+        st.session_state.page = "home"
+        st.rerun()
 
-def RandomOne():
-    """This funtion run after click Random One button"""
-    if filtered.empty:
-        st.warning("No menu matches your ingredients.")
-        return
-    random_food = filtered.sample(1).iloc[0]
-    with st.container(border=True):
-        st.write(random_food["Name"])
-        st.markdown("  \n".join(random_food["Ingredients"].values()))
-        if st.button("Let's Cook!"):
-            RecipeStep(random_food["Name"])
-
-def ShowAll():
-    """This funtion run after click Show All button"""
-    #ยังไม่ได้ทำ
-
-if st.button("Random One"):
-    RandomOne()
-if st.button("Show All"):
-    ShowAll()
+if st.session_state.page == "home":
+    HomePage()
+elif st.session_state.page == "recipe":
+    RecipeStep(st.session_state.PickedMenu)

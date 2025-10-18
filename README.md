@@ -8,4 +8,4 @@
 ## *About this project*
 เว็บไซต์นี้พัฒนาขึ้นเพื่อสุ่มเมนูอาหารและแสดงวิธีการประกอบอาหารจากวัตถุดิบที่เหลืออยู่ในตู้เย็น โดยวัตถุดิบดังกล่าวอาจหลงเหลือจากการทำเมนูอื่นก่อนหน้าซึ่งผู้ใช้สามารถสุ่มเมนูจากเว็บไซต์และสามารถนำไปประกอบอาหารได้ทันที
 ## *Document*
-รายงานเว็บไซต์ - [CheckWatthudip](https://docs.google.com/document/d/1W_0rcdB_aXAXXraSKgRdz1y0gzHqD4iwnoDzeQOP8q0/edit?usp=sharing)
+รายงานเว็บไซต์ - [AhanFromFridge](https://docs.google.com/document/d/1W_0rcdB_aXAXXraSKgRdz1y0gzHqD4iwnoDzeQOP8q0/edit?usp=sharing)

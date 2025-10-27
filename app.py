@@ -3,7 +3,7 @@ import pandas as pd
 
 st.set_page_config(
     page_title="AhanFromFridge",
-    page_icon="❄️",
+    page_icon=":fried_egg:",
     layout="centered",
     initial_sidebar_state="auto",
 )

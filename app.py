@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import base64
+from pathlib import Path
 
 st.set_page_config(
     page_title="AhanFromFridge",
@@ -8,10 +10,18 @@ st.set_page_config(
     initial_sidebar_state="auto",
 )
 
-def load_css(style_file):
+def load_css_with_bg(style_file, image_path):
+    with open(image_path, "rb") as f:
+        img_data = base64.b64encode(f.read()).decode()
+    
     with open(style_file) as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-load_css("style.css")
+        css = f.read()
+
+    css = css.replace("REPLACE_WITH_BASE64", img_data)
+
+    st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
+
+load_css_with_bg("style.css", "image/Food_Ingre.png")
 
 df = pd.read_json("food.json")
 All_Ingredients = set().union(*df["Ingredients"].map(dict.keys))
@@ -83,7 +93,7 @@ def HomePage():
     if st.button("Random One"):
         RandomOne()
 
-    if st.button(f"Show All ({len(filtered)})"):
+    if st.button(f"Show All ({len(filtered)})", key="ShowAllButton"):
         ShowAll()
 
 def RecipeStep(PickedMenu):

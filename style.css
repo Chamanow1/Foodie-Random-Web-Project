@@ -52,7 +52,7 @@ h2 {
     display: flex;
     align-items: center;
     gap: 4px;
-    padding: 10px 15px;
+    padding: 4px 8px;
     border: 4px solid transparent;
     font-size: 16px;
     background-color: inherit;
@@ -110,4 +110,20 @@ h2 {
     h1 {
         font-size: 43px !important;
     }
+}
+
+.st-key-containerafterrandom {
+    border: 3.5px solid #000000 !important;
+    padding: 20px !important;
+    border-radius: 10px !important;
+    margin-top: 20px !important;
+    background-color: transparent !important;
+}
+
+div[class*="st-key-containerafterall_"] {
+    border: 3.5px solid #000000 !important;
+    padding: 20px !important;
+    border-radius: 10px !important;
+    margin-top: 20px !important;
+    background-color: transparent !important;
 }

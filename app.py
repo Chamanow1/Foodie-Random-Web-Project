@@ -59,7 +59,7 @@ def HomePage():
 
     if st.session_state.ChosenFood is not None and not st.session_state.ShowAllMode:
         ChosenFood = st.session_state.ChosenFood
-        with st.container(border=True):
+        with st.container(border=True, key='containerafterrandom'):
             st.subheader(ChosenFood["Name"])
             st.markdown(", ".join(ChosenFood["Ingredients"]))
             if st.button("Let's Cook! 🡢", key="LetsCookinRandomButton"):
@@ -80,8 +80,8 @@ def HomePage():
         st.rerun()
 
     if st.session_state.ShowAllMode:
-        for _, menu in filtered.iterrows():
-            with st.container(border=True):
+        for i, menu in filtered.iterrows():
+            with st.container(border=True, key=f'containerafterall_{i}'):
                 st.subheader(menu["Name"])
                 st.markdown(", ".join(menu["Ingredients"]))
                 if st.button(f"Let's Cook {menu['Name']}"):
@@ -90,7 +90,7 @@ def HomePage():
                     st.session_state.CookButtonClicked = True
                     st.rerun()
 
-    if st.button("Random One"):
+    if st.button("Random One", key = 'RandomOnemenu'):
         RandomOne()
 
     if st.button(f"Show All ({len(filtered)})", key="ShowAllButton"):
@@ -145,16 +145,16 @@ def CookingMode():
     #button previous next and finish
     col1,col2 = st.columns(2)
     with col1:
-        if st.button("Previous", disabled=(current == 0)):
+        if st.button("Previous", disabled=(current == 0), key='previousbutton'):
             st.session_state.step_index -= 1
             st.rerun()
     with col2:
         if current < len(steps) - 1:
-            if  st.button("Next"):
+            if  st.button("Next", key='nextbutton'):
                 st.session_state.step_index += 1
                 st.rerun()
         else:
-            if st.button("Finish"):
+            if st.button("Finish", key='finishbutton'):
                 st.balloons()
                 st.success("You finished cooking!")
 

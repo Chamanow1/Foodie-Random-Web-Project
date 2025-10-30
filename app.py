@@ -62,7 +62,7 @@ def HomePage():
         with st.container(border=True):
             st.subheader(ChosenFood["Name"])
             st.markdown(", ".join(ChosenFood["Ingredients"]))
-            if st.button("Let's Cook!"):
+            if st.button("Let's Cook! 🡢", key="LetsCookinRandomButton"):
                 st.session_state.PickedMenu = ChosenFood["Name"]
                 st.session_state.page = "recipe"
                 st.session_state.CookButtonClicked = True

@@ -135,7 +135,7 @@ def CookingMode():
             st.write(f"- {item}")
 
     #show step
-    if "step_index" not in st.session_state:
+    if "step_index" not in st.session_state or st.session_state.step_index is None:
         st.session_state.step_index = 0
     steps = menu["Recipe"]
     current = st.session_state.step_index

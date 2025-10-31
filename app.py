@@ -143,18 +143,18 @@ def CookingMode():
     st.info(steps[current])
     
     #button previous next and finish
-    col1,col2 = st.columns(2)
+    col1,col2 = st.columns([5, 1])
     with col1:
-        if st.button("Previous", disabled=(current == 0), key='previousbutton'):
+        if st.button("⪻ Previous", disabled=(current == 0), key='previousbutton'):
             st.session_state.step_index -= 1
             st.rerun()
     with col2:
         if current < len(steps) - 1:
-            if  st.button("Next", key='nextbutton'):
+            if  st.button("Next ⪼", key='nextbutton'):
                 st.session_state.step_index += 1
                 st.rerun()
         else:
-            if st.button("Finish", key='finishbutton'):
+            if st.button("Finish!", key='finishbutton'):
                 st.balloons()
                 st.success("You finished cooking!")
 

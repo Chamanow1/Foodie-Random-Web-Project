@@ -9,7 +9,8 @@ h1 {
     font-size: 60px !important;
     font-weight: bold;
     margin-bottom: 20px;
-    font-family: "Jua", sans-serif!important;
+    font-family: "Jua", sans-serif !important;
+    padding-bottom: 50px !important;
 }
 
 h2 {
@@ -17,6 +18,7 @@ h2 {
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
+    padding-bottom: 20px !important;
 }
 
 [data-testid="stAppViewContainer"] {
@@ -33,12 +35,12 @@ h2 {
 
 .st-key-ShowAllButton button {
     width: 100% !important;
-    background-color: rgb(116,195,101) !important;
+    background-color: rgb(240, 220, 196) !important;
 }
 
 .st-key-ShowAllButton button:hover {
     transform: translateY(-2px);
-    box-shadow: 0px 3px 0px rgb(53,94,59);
+    box-shadow: 0px 5px 0px rgb(233, 185, 113);
     cursor: pointer;
 }
 
@@ -126,4 +128,56 @@ div[class*="st-key-containerafterall_"] {
     border-radius: 10px !important;
     margin-top: 20px !important;
     background-color: transparent !important;
+}
+
+[data-baseweb="select"] {
+    border: 3px solid #363636 !important;
+    border-radius: 10px !important;
+    background-color: transparent !important;
+}
+
+[data-baseweb="tag"] {
+    background-color: #f0b791 !important;
+    color: black !important;
+    font-family: "Itim" !important;
+}
+
+[data-testid="stSelectboxVirtualDropdown"] {
+    background-color: rgb(255, 255, 255) !important;
+}
+
+[role="option"] {
+    font-family: 'Itim';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    font-size: 20px;
+}
+
+.st-key-nextbutton button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(90deg, #007BFF, #00C6FF) !important;
+    color: white !important;
+    font-weight: 600 !important;
+    border: none !important;
+    padding: 4px 12px !important;
+    border-radius: 10px !important;
+    cursor: pointer !important;
+    font-size: 16px !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+.st-key-nextbutton button:hover {
+    transform: translateX(10px);
+    background: linear-gradient(90deg, #006ae0, #00b5e0) !important;
+}
+
+[data-testid="stHorizontalBlock"] {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 2rem !important;
 }

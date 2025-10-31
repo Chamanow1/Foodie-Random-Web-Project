@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import base64
-from pathlib import Path
+
 
 st.set_page_config(
     page_title="AhanFromFridge",

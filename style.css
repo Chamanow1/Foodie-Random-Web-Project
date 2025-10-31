@@ -181,3 +181,27 @@ div[class*="st-key-containerafterall_"] {
     align-items: center !important;
     gap: 2rem !important;
 }
+
+.st-key-RandomOnemenu button {
+    border-radius: 25px;
+    background-color: rgb(241, 238, 228);
+    color: black;
+    padding: 10px;
+    width: 110px;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.st-key-RandomOnemenu button:hover {
+    background-color: rgb(159, 129, 112);
+    transform: translateY(-2px);
+    color: white;
+}
+
+.st-key-RandomOnemenu button:active {
+    transform: translateY(2px);
+}

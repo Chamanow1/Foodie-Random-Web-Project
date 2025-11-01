@@ -205,3 +205,32 @@ div[class*="st-key-containerafterall_"] {
 .st-key-RandomOnemenu button:active {
     transform: translateY(2px);
 }
+
+.st-key-CookingModeButton button {
+    background-color: rgb(249, 223, 197);
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    width: 10em;
+    border-radius: 1rem;
+    color: black;
+    box-shadow: 0 0.4rem rgb(234, 189, 140);
+    cursor: pointer;
+}
+
+.st-key-CookingModeButton button:active {
+    color: white;
+    box-shadow: 0 0.2rem #dfd9d9;
+    transform: translateY(0.2rem);
+}
+
+.st-key-CookingModeButton button:hover:not(:disabled) {
+    background: rgb(223, 145, 102);
+    color: white;
+    text-shadow: 0 0.1rem #bcb4b4;
+}
+
+.st-key-CookingModeButton button:disabled {
+    cursor: auto;
+    color: grey;
+}

@@ -106,7 +106,7 @@ def RecipeStep(PickedMenu):
     st.subheader("Recipe Steps")
     for i, step in enumerate(menu["Recipe"], 1):
         st.write(f"{i}. {step}")
-    if st.button("Cooking Mode"):
+    if st.button("Cooking Mode🍴", key="CookingModeButton"):
         st.session_state.page = "cooking"
         st.rerun()
     if st.button("Back"):

@@ -109,7 +109,7 @@ def RecipeStep(PickedMenu):
     if st.button("Cooking Mode🍴", key="CookingModeButton"):
         st.session_state.page = "cooking"
         st.rerun()
-    if st.button("Back"):
+    if st.button("🡠Back", key="BackButton"):
         st.session_state.page = "home"
         st.session_state.PickedMenu = None
         st.session_state.ChosenFood = None
@@ -159,7 +159,7 @@ def CookingMode():
                 st.success("You finished cooking!")
 
     #button home
-    if st.button("🏠 Home"):
+    if st.button("🏠 Home", key="HomeButton"):
         st.session_state.page = "home"
         st.session_state.step_index = None
         st.session_state.PickedMenu = None

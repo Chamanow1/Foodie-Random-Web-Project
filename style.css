@@ -48,7 +48,7 @@ h2 {
 }
 
 .st-key-ShowAllButton button:hover {
-    background-color: rgb(159, 129, 112);
+    background-color: rgb(239, 172, 91);
     transform: translateY(-2px);
     color: white;
 }
@@ -110,12 +110,6 @@ h2 {
     opacity: 1;
 }
 
-
-@keyframes pop {
-    0% { transform: scale(1); }
-    50% { transform: scale(0.95); }
-    100% { transform: scale(1); }
-}
 
 @media (max-width: 600px) {
     h1 {
@@ -206,7 +200,7 @@ div[class*="st-key-containerafterall_"] {
 }
 
 .st-key-RandomOnemenu button:hover {
-    background-color: rgb(159, 129, 112);
+    background-color: rgb(108, 160, 220);
     transform: translateY(-2px);
     color: white;
 }
@@ -315,4 +309,32 @@ div[class*="st-key-containerafterall_"] {
   border-radius: 40px;
   border-bottom: 3px solid #fff;
   border-right: 3px solid #fff;
+}
+
+.st-key-BackButton button {
+    transition: transform 0.2s ease;
+}
+
+.st-key-BackButton button:active {
+    animation: press 0.2s ease;
+}
+
+.st-key-HomeButton button {
+    transition: transform 0.2s ease;
+}
+
+.st-key-HomeButton button:active {
+    animation: press 0.2s ease;
+}
+
+@keyframes press {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
 }

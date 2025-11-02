@@ -107,7 +107,7 @@ def RecipeStep(PickedMenu):
     for i, step in enumerate(menu["Recipe"], 1):
         st.write(f"{i}. {step}")
     if "Source" in menu:
-        st.markdown(f"Source : {menu["Source"]}")
+        st.markdown(f"Source : {menu['Source']}")
     if st.button("Cooking Mode🍴", key="CookingModeButton"):
         st.session_state.page = "cooking"
         st.rerun()

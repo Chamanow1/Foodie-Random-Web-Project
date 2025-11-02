@@ -40,7 +40,7 @@ if "CookButtonClicked" not in st.session_state:
 def HomePage():
     """This function run at home page"""
     st.title("AhanFromFridge:fried_egg:")
-    st.header("มีอะไรในตู้เย็นบ้าง?") #เปลี่ยนคำได้นะ
+    st.header("มีวัตถุดิบอะไรในตู้เย็นบ้าง?")
     selected = st.multiselect("", All_Ingredients)
 
     filtered = df[df["Ingredients"].apply(lambda x: bool(set(selected) & set(x.keys())))]  # x เป็น Ingredients ของแต่ละเมนู
@@ -48,7 +48,7 @@ def HomePage():
     def RandomOne():
         """This funtion run after click "Random One" button"""
         if filtered.empty:
-            st.warning("อย่าลืมใส่วัตถุดิบ") #เปลี่ยนคำได้นะ
+            st.warning("อย่าลืมใส่วัตถุดิบ!")
             st.session_state.ChosenFood = None
             st.session_state.ShowAllMode = False
             return
@@ -71,7 +71,7 @@ def HomePage():
     def ShowAll():
         """This funtion run after click "Show All" button"""
         if filtered.empty:
-            st.warning("อย่าลืมใส่วัตถุดิบ") #เปลี่ยนคำได้นะ
+            st.warning("อย่าลืมใส่วัตถุดิบ!")
             st.session_state.ChosenFood = None
             st.session_state.ShowAllMode = False
             return
@@ -106,6 +106,8 @@ def RecipeStep(PickedMenu):
     st.subheader("Recipe Steps")
     for i, step in enumerate(menu["Recipe"], 1):
         st.write(f"{i}. {step}")
+    if "Source" in menu:
+        st.markdown(f"Source : {menu["Source"]}")
     if st.button("Cooking Mode🍴", key="CookingModeButton"):
         st.session_state.page = "cooking"
         st.rerun()
@@ -126,7 +128,7 @@ def CookingMode():
     if "Image" in menu:
         st.image(menu["Image"], use_container_width=True)
     if "ImageCredit" in menu:
-        st.markdown(f"Credit: ({menu['ImageCredit']})")
+        st.markdown(f"Image source : {menu['ImageCredit']}")
 
     
     #show all ingredients

@@ -22,7 +22,7 @@ h2 {
 }
 
 [data-testid="stAppViewContainer"] {
-    background-image: url("data:image/png;base64,REPLACE_WITH_BASE64");
+    background-image: url("https://raw.githubusercontent.com/Chamanow1/AhanFromFridge/refs/heads/main/image/Food_Ingre.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

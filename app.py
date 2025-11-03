@@ -1,7 +1,5 @@
 import streamlit as st
 import pandas as pd
-import base64
-
 
 st.set_page_config(
     page_title="AhanFromFridge",
@@ -10,18 +8,11 @@ st.set_page_config(
     initial_sidebar_state="auto",
 )
 
-def load_css_with_bg(style_file, image_path):
-    with open(image_path, "rb") as f:
-        img_data = base64.b64encode(f.read()).decode()
-    
-    with open(style_file) as f:
-        css = f.read()
+def local_css(style_path):
+    with open(style_path) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-    css = css.replace("REPLACE_WITH_BASE64", img_data)
-
-    st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
-
-load_css_with_bg("style.css", "image/Food_Ingre.png")
+local_css("style.css")
 
 df = pd.read_json("food.json")
 All_Ingredients = set().union(*df["Ingredients"].map(dict.keys))
